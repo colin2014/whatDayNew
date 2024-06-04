@@ -153,6 +153,18 @@ function changeBackgroundColorGradually(hours, minutes, seconds) {
     body.style.background = `linear-gradient(135deg, rgb(${interpolatedStartColor.join(',')}) 0%, rgb(${interpolatedEndColor.join(',')}) 100%)`;
 }
 
+// Function to toggle full screen
+function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else if (document.exitFullscreen) {
+        document.exitFullscreen();
+    }
+}
+
+// Add event listener to the full-screen image button
+document.getElementById('fullscreen-btn').addEventListener('click', toggleFullScreen);
+
 // Initial call to display the clock immediately
 updateClock();
 

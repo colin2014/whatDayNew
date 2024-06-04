@@ -30,7 +30,25 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.clock:hover, .day-status:hover, .weather-box:hover {
+.fullscreen-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    cursor: pointer;
+    z-index: 1000; /* Ensure it stays on top */
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fullscreen-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 2px rgba(212, 211, 210, 0.1);
+}
+
+
+.clock:hover, .day-status:hover, .weather-box:hover, .fullscreen-button{
     transform: scale(1.05);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
@@ -99,3 +117,4 @@ body {
 .container, .weather-container {
     animation: fadeIn 2s ease-in-out;
 }
+
