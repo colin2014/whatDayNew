@@ -1,0 +1,156 @@
+/* General body style */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    margin: 15;
+    font-family: 'Comic Neue', sans-serif;
+    color: #004d40;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+/* Container styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    gap: 10px; /* Removed the gap */
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+    height: 60%;
+}
+
+.bottom-section {
+    display: flex;
+    justify-content: space-between; /* Adjusted for better alignment */
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+    height: 40%;
+    position: relative; /* To position the logo container */
+}
+
+/* Logo styles */
+.logo-container {
+  position:absolute;
+  right:22px;
+  top:25px;
+}
+
+.school-logo {
+    width: 160px;
+    border-radius: 5%;
+}
+
+/* Slides and day status styles */
+.slides-container {
+    flex-grow: 1;
+    max-width: 70%;
+    height: 90%;
+    background: rgba(255, 255, 255, 0.8); /* Adjusted for better visibility */
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.slides-container iframe {
+    border: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.day-status {
+    flex-grow: 1;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    font-size: 24em;
+    box-sizing: border-box;
+    color: #ff6f61;
+}
+
+/* Clock and weather box styles */
+.info-container {
+    display: flex;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.clock, .weather-box {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.8);
+    color: #004d40;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-sizing: border-box;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.clock.small {
+    font-size: 3em;
+    color: #ff6f61;
+}
+
+.weather-box {
+    font-size: 2.5em; /* Increased font size for weather */
+}
+
+.fullscreen-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    cursor: pointer;
+    z-index: 1000; /* Ensure it stays on top */
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fullscreen-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.clock:hover, .weather-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.weather-icon {
+    width: 150px;
+    height: 150px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.top-section, .bottom-section {
+    animation: fadeIn 2s ease-in-out;
+}

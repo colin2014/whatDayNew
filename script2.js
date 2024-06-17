@@ -24,7 +24,7 @@ function updateClock() {
     const day = now.getDate();
     const year = now.getFullYear();
 
-    const dateString = `${dayName}, ${monthName} ${day}, ${year}`;
+    const dateString = `${dayName}, ${monthName} ${day}`;
     document.getElementById('date').textContent = dateString;
 
     // Determine the current lesson
@@ -72,9 +72,6 @@ function updateClock() {
     
     // Update weather
     updateWeather();
-
-    // Change background color gradually
-    changeBackgroundColorGradually(hours, minutes, seconds);
 }
 
 function timeToSeconds(hours, minutes, seconds) {
@@ -116,41 +113,9 @@ function updateWeather() {
         .catch(error => console.error('Error fetching weather data:', error));
 }
 
-function changeBackgroundColorGradually(hours, minutes, seconds) {
+function setRainbowBackground() {
     const body = document.body;
-
-    // Define color stops for different times of the day
-    const morningColor = { start: [255, 221, 193], end: [255, 231, 170] };
-    const afternoonColor = { start: [255, 231, 170], end: [255, 200, 55] };
-    const eveningColor = { start: [255, 200, 55], end: [255, 106, 0] };
-    const nightColor = { start: [44, 62, 80], end: [76, 161, 175] };
-
-    let startColor, endColor;
-
-    if (hours >= 6 && hours < 12) {
-        startColor = morningColor.start;
-        endColor = morningColor.end;
-    } else if (hours >= 12 && hours < 18) {
-        startColor = afternoonColor.start;
-        endColor = afternoonColor.end;
-    } else if (hours >= 18 && hours < 20) {
-        startColor = eveningColor.start;
-        endColor = eveningColor.end;
-    } else {
-        startColor = nightColor.start;
-        endColor = nightColor.end;
-    }
-
-    // Calculate the interpolation factor
-    const totalSeconds = hours * 3600 + minutes * 60 + seconds;
-    const currentFraction = totalSeconds % 3600 / 3600;
-
-    // Interpolate colors
-    const interpolatedStartColor = startColor.map((start, index) => Math.round(start + (endColor[index] - start) * currentFraction));
-    const interpolatedEndColor = endColor.map((start, index) => Math.round(start + (startColor[index] - start) * currentFraction));
-
-    // Set the background color
-    body.style.background = `linear-gradient(135deg, rgb(${interpolatedStartColor.join(',')}) 0%, rgb(${interpolatedEndColor.join(',')}) 100%)`;
+    body.style.background = "linear-gradient(135deg, #FFB3BA 0%, #FFDFBA 20%, #FFFFBA 40%, #BAFFC9 60%, #BAE1FF 80%)";
 }
 
 // Function to toggle full screen
@@ -167,6 +132,9 @@ document.getElementById('fullscreen-btn').addEventListener('click', toggleFullSc
 
 // Initial call to display the clock immediately
 updateClock();
+
+// Set rainbow background immediately
+setRainbowBackground();
 
 // Update the clock every second
 setInterval(updateClock, 1000);
