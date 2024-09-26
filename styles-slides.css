@@ -1,16 +1,20 @@
 /* General body style */
+html, body {
+    height: 100%; /* Ensure the html and body take up full height */
+    margin: 0;
+    padding: 0;
+}
+
 body {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     height: 100vh;
-    background: #ffffff; /* Plain background */
-    margin: 0;
+    background: #03246f !important; /* Dark blue background with !important */
     font-family: 'Comic Neue', sans-serif;
-    color: #004d40;
+    color: #ffffff;
     box-sizing: border-box;
-    padding: 10px;
 }
 
 /* Container styles */
@@ -18,41 +22,39 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 100%;
+    width: 50%;
     height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 1; /* Ensure the container sits above the background */
 }
 
-/* Top section */
 .top-section {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    height: 60%;
-}
-
-/* Bottom section */
-.bottom-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    align-items: flex-start;
+    gap: 10px;
     height: 40%;
+    width: 100%;
     position: relative;
+    z-index: 1;
+    padding-top: 50px; /* Adds 20px space at the top inside the container */
+    padding-bottom: 50px; /* Adds 20px space at the top inside the container */
 }
 
-/* Logo styles */
+/* Logo placement */
 .logo-container {
     position: absolute;
-    right: 22px;
-    top: 25px;
+    top: 70px;
+    right: 20px;
 }
 
 .school-logo {
-    width: 160px;
+    width: 150px;
     border-radius: 5%;
 }
 
-/* Day status styles */
+/* Day status box styles */
 .day-status {
     flex-grow: 1;
     display: flex;
@@ -61,31 +63,54 @@ body {
     background: rgba(255, 255, 255, 0.9);
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    padding: 5px;
-    font-size: 3em;
-    color: #ff6f61;
+    padding: 20px;
+    font-size: 25em; /* Increased font size */
+    color: #288f23;
+    text-align: center;
 }
 
-/* Clock and info container styles */
+/* Bottom section styles */
+.bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60%;
+    width: 100%;
+}
+
 .info-container {
     display: flex;
-    gap: 10px;
-    width: 100%;
-    justify-content: center;
-}
-
-.clock {
-    display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    flex-grow: 1;
     background: rgba(255, 255, 255, 0.8);
-    color: #004d40;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    font-size: 6em;
     text-align: center;
-    font-size: 3em;
+    color: #ea952d;
+}
+
+/* Slides container styles */
+.slides-container {
+    width: 50%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.9); /* Light background for the box */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    padding: 20px; /* Padding inside the box */
+    box-sizing: border-box;
+    overflow: hidden; /* Ensure the content doesn't overflow */
+    z-index: 1; /* Ensure the slides container sits above the background */
+}
+
+.slides-container iframe {
+    border: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px; /* Optional: Rounded corners inside iframe */
 }
 
 /* Fullscreen button */
@@ -96,7 +121,8 @@ body {
     width: 50px;
     height: 50px;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 1000; /* Ensure fullscreen button stays on top */
+    transition: transform 0.2s, box-shadow 0.2s;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
