@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Name Picker</title>
+</head>
+<body>
+    <h1>Random Name Picker</h1>
+    
+    <label for="class-select">Select a class:</label>
+    <select id="class-select">
+        <option value="" selected disabled>Select a class</option>
+        {% for class_name in classes %}
+            <option value="{{ class_name }}">{{ class_name }}</option>
+        {% endfor %}
+    </select>
+
+    <button id="pick-name-btn">Pick a Random Name</button>
+
+    <h2 id="result"></h2>
+
+    <script>
+        document.getElementById('pick-name-btn').addEventListener('click', function() {
+            const classSelect = document.getElementById('class-select');
+            const selectedClass = classSelect.value;
+            const result = document.getElementById('result');
+
+            if (!selectedClass) {
+                result.textContent = "Please select a class!";
+                return;
+            }
+
+            fetch('/get_random_name', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `class_name=${encodeURIComponent(selectedClass)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    result.textContent = "Error: " + data.error;
+                } else {
+                    result.textContent = "Selected Name: " + data.name;
+                }
+            })
+            .catch(error => {
+                result.textContent = "An error occurred!";
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
