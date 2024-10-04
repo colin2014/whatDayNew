@@ -25,6 +25,7 @@ body {
 .info-section {
     width: 100%;
     height: 10vh; /* Remaining 10% of the height */
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
