@@ -44,13 +44,13 @@ body {
 }
 
 .clock {
-    font-size: 4em;
+    font-size: 2em;
     font-weight: bold;
     color:#d132c1;
 }
 
 .day-status{
-    font-size: 9em;
+    font-size: 6em;
     font-weight: bold;
     color: #452f50;
 }
