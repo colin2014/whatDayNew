@@ -46,13 +46,13 @@ body {
 .clock {
     font-size: 4em;
     font-weight: bold;
-    color: #D3D3D3;
+    color:#d132c1;
 }
 
 .day-status{
     font-size: 9em;
     font-weight: bold;
-    color: #D3D3D3;
+    color: #452f50;
 }
 
 /* Text styling */
