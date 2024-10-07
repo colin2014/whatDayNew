@@ -1,3 +1,4 @@
+
 body {
     font-family: 'Comic Neue', sans-serif;
     margin: 0;
@@ -31,6 +32,14 @@ body {
     box-sizing: border-box;
 }
 
+#small-timer {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 4px;
+    color: gray;
+}
+
 .left-box, .right-box {
     width: 48%; /* Each box takes up 50% of the screen width with a small gap */
     background-color: #ececec;
@@ -50,7 +59,7 @@ body {
 }
 
 .day-status{
-    font-size: 6em;
+    font-size: 7em;
     font-weight: bold;
     color: #452f50;
 }
@@ -80,4 +89,22 @@ body {
         width: 100%;
         margin-bottom: 10px;
     }
+}
+
+#small-timer {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    font-size: 8px;  /* Make bigger for testing */
+    color: red;       /* Use red for visibility during testing */
+    z-index: 9999;
+}
+
+#refresh-count {
+    position: fixed;
+    bottom: 30px;  /* Just above the countdown timer */
+    left: 10px;
+    font-size: 8px;  /* Same size as the countdown timer */
+    color: rgb(59, 59, 59);
+    z-index: 9999;
 }

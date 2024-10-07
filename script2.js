@@ -89,34 +89,34 @@ function getStatusFromCSV(csvData, currentDate) {
     return 'No Status Available';
 }
 
-function updateWeather() {
-    const apiKey = '5947720cea20299fcc0f340002ab9d3e';
-    const city = 'EGHAM';
-    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
+// function updateWeather() {
+//     const apiKey = '5947720cea20299fcc0f340002ab9d3e';
+//     const city = 'EGHAM';
+//     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
 
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            const currentWeather = data.list[0];
-            const nextHourWeather = data.list[1];
+//     fetch(url)
+//         .then(response => response.json())
+//         .then(data => {
+//             const currentWeather = data.list[0];
+//             const nextHourWeather = data.list[1];
             
-            const currentWeatherDescription = `${currentWeather.weather[0].description}, ${Math.round(currentWeather.main.temp - 273.15)}°C`;
-            const currentWeatherIcon = currentWeather.weather[0].icon;
-            document.getElementById('weather').textContent = currentWeatherDescription;
-            document.getElementById('weather-icon').src = `http://openweathermap.org/img/wn/${currentWeatherIcon}@2x.png`;
+//             const currentWeatherDescription = `${currentWeather.weather[0].description}, ${Math.round(currentWeather.main.temp - 273.15)}°C`;
+//             const currentWeatherIcon = currentWeather.weather[0].icon;
+//             document.getElementById('weather').textContent = currentWeatherDescription;
+//             document.getElementById('weather-icon').src = `http://openweathermap.org/img/wn/${currentWeatherIcon}@2x.png`;
             
-            const nextHourWeatherDescription = `In 1 hour: ${nextHourWeather.weather[0].description}, ${Math.round(nextHourWeather.main.temp - 273.15)}°C`;
-            const nextHourWeatherIcon = nextHourWeather.weather[0].icon;
-            document.getElementById('next-hour-weather').textContent = nextHourWeatherDescription;
-            document.getElementById('next-hour-weather-icon').src = `http://openweathermap.org/img/wn/${nextHourWeatherIcon}@2x.png`;
-        })
-        .catch(error => console.error('Error fetching weather data:', error));
-}
+//             const nextHourWeatherDescription = `In 1 hour: ${nextHourWeather.weather[0].description}, ${Math.round(nextHourWeather.main.temp - 273.15)}°C`;
+//             const nextHourWeatherIcon = nextHourWeather.weather[0].icon;
+//             document.getElementById('next-hour-weather').textContent = nextHourWeatherDescription;
+//             document.getElementById('next-hour-weather-icon').src = `http://openweathermap.org/img/wn/${nextHourWeatherIcon}@2x.png`;
+//         })
+//         .catch(error => console.error('Error fetching weather data:', error));
+// }
 
-function setRainbowBackground() {
-    const body = document.body;
-    body.style.background = "linear-gradient(135deg, #FFB3BA 0%, #FFDFBA 20%, #FFFFBA 40%, #BAFFC9 60%, #BAE1FF 80%)";
-}
+// function setRainbowBackground() {
+//     const body = document.body;
+//     body.style.background = "linear-gradient(135deg, #FFB3BA 0%, #FFDFBA 20%, #FFFFBA 40%, #BAFFC9 60%, #BAE1FF 80%)";
+// }
 
 // Function to toggle full screen
 function toggleFullScreen() {
@@ -130,11 +130,60 @@ function toggleFullScreen() {
 // Add event listener to the full-screen image button
 document.getElementById('fullscreen-btn').addEventListener('click', toggleFullScreen);
 
-// Initial call to display the clock immediately
-updateClock();
+// Initialize countdown at 60 seconds
+let countdown = 60;
 
-// Set rainbow background immediately
-setRainbowBackground();
+// Initialize refresh counter from localStorage (or 0 if it's not set yet)
+let refreshCount = localStorage.getItem('refreshCount') ? parseInt(localStorage.getItem('refreshCount')) : 0;
 
-// Update the clock every second
-setInterval(updateClock, 1000);
+// Function to update the clock and countdown timer
+function updateClockAndTimer() {
+    console.log("Updating clock and timer");  // Debug log
+
+    // Update the clock and lesson info
+    try {
+        updateClock();
+    } catch (error) {
+        console.error("Error in updateClock function: ", error);
+    }
+    
+    // Update the countdown timer
+    const timerElement = document.getElementById('small-timer');
+    if (timerElement) {
+        timerElement.textContent = countdown;
+        countdown--;
+    } else {
+        console.error('Error: small-timer element not found');
+    }
+
+    // If countdown reaches 0, refresh the page and update the counter
+    if (countdown < 0) {
+        countdown = 120;  // Reset countdown
+
+        // Increment refresh counter
+        refreshCount++;
+        localStorage.setItem('refreshCount', refreshCount);
+
+        console.log("Refreshing the page, refresh count: ", refreshCount);
+
+        // Refresh the page
+        location.reload();
+    }
+
+    // Update the refresh count display
+    const refreshElement = document.getElementById('refresh-count');
+    if (refreshElement) {
+        refreshElement.textContent = `${refreshCount}`;
+    } else {
+        console.error('Error: refresh-count element not found');
+    }
+}
+
+// Initial call to display the clock, countdown, and refresh count immediately
+updateClockAndTimer();
+
+// Update the clock and timer every second
+setInterval(updateClockAndTimer, 1000);
+// // Set rainbow background immediately
+// setRainbowBackground();
+
